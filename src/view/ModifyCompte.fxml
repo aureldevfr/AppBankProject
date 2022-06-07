@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ModifyCompteController">
+   <children>
+      <GridPane prefHeight="61.0" prefWidth="298.0" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="70.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="104.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="261.0" minWidth="10.0" prefWidth="176.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <TextField fx:id="tfIdClient" GridPane.columnIndex="1" />
+            <TextField fx:id="tfLimitCompte" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="N° Client" />
+            <Label text="Limite retrait" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <ButtonBar layoutX="136.0" layoutY="296.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="121.0" AnchorPane.topAnchor="296.0">
+         <buttons>
+            <Button mnemonicParsing="false" onAction="#handleOk" text="Appliquer" />
+            <Button mnemonicParsing="false" onAction="#handleCancel" text="Annuler" />
+         </buttons>
+      </ButtonBar>
+      <Label text="Modifier Compte:" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="28.0" />
+   </children>
+</AnchorPane>
