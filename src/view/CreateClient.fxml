@@ -49,6 +49,5 @@
         </buttons>
       </ButtonBar>
       <Label layoutX="26.0" layoutY="28.0" text="Nouveau Client:" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="28.0" />
-      <Button layoutX="42.0" layoutY="304.0" mnemonicParsing="false" onAction="#test" text="test" />
    </children>
 </AnchorPane>

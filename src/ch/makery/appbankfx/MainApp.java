@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import model.Client;
 import model.Compte;
 import view.AccueilController;
+import view.ConnexionController;
 import view.CreateClientController;
 import view.CreateCompteController;
 import view.CreateOperationController;
@@ -45,7 +46,7 @@ public class MainApp extends Application {
 	
 	
 	public MainApp() {
-		loadClientdata();
+		//loadClientdata();
 	}
 	
 	public void loadClientdata() {
@@ -69,7 +70,8 @@ public class MainApp extends Application {
 		
 		initRootLayout();
 		
-		displayAccueilWindow();
+		//displayAccueilWindow();
+		displayConnexionWindow();
 		
 		//displayCreateOperationWindow();
 		
@@ -99,9 +101,34 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+    
+    public void displayConnexionWindow() {
+		try {
+			//initRootLayout();
+            // Load Accueil overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/view/Connexion.fxml"));
+            AnchorPane conexionOverview = (AnchorPane) loader.load();
+            
+            ConnexionController connexionCtrl = loader.getController();
+			//accueilCtrl.fillTabClient();
+            //connexionCtrl.fillTabOperation();
+            
+            // Set Accueil overview into the center of root layout.
+            rootLayout.setCenter(conexionOverview);
+            
+            // Give the controller access to the main app.
+            ConnexionController controller = loader.getController();
+            controller.setMainApp(this);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
 	
 	public void displayAccueilWindow() {
 		try {
+			loadClientdata();
             // Load Accueil overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/view/Accueil.fxml"));

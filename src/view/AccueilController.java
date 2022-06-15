@@ -1,6 +1,7 @@
 package view;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.function.Predicate;
@@ -8,6 +9,7 @@ import java.util.function.Predicate;
 import ch.makery.appbankfx.MainApp;
 import dao.ClientDao;
 import dao.CompteDao;
+import dao.ConnectDB;
 import dao.OperationDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +21,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -128,6 +131,10 @@ public class AccueilController {
     private Label lbVilleProprioOp;
     @FXML
     private Label lbSoldeProprioOp;
+    
+    /////////MenuBar//////////
+    @FXML
+    private MenuItem mItemDeco;
 
     private ObservableList<Operation> lstOp = FXCollections.observableArrayList();
  
@@ -135,15 +142,20 @@ public class AccueilController {
     private ClientDao clientDao = new ClientDao();
     private OperationDao operationDao = new OperationDao();
     
-    
     // Reference to the main application.
     private MainApp mainApp;
     
     @FXML
+    private void deconnexion() {
+    	System.out.println("deconnexion");
+    	//ConnectDB.closeConnection();
+    	//mainApp.displayConnexionWindow();
+    }
+    
+    
+    @FXML
 	private void testDate() {
 		System.out.println("testDate()");
-		
-		
 		
 	}
 
@@ -190,10 +202,16 @@ public class AccueilController {
 	    clMontantOp.setCellValueFactory(cellData -> cellData.getValue().montantOperationProperty());
 	    clDateOp.setCellValueFactory(cellData -> cellData.getValue().dateOperationProperty());
 		// Clear Opération details.
-		showOperationDetails(0);
+		//showOperationDetails(0);
 	    // Listen for selection changes and show the Opération details when changed.
 	    /*tbOp.getSelectionModel().selectedItemProperty().addListener(
 	            (observable, oldValue, newValue) -> showOperationDetails(newValue));*/
+	    
+	 // Clear Opération details.
+	 		showOperationDetails(null);
+	 	    // Listen for selection changes and show the Opération details when changed.
+	 	    tbOp.getSelectionModel().selectedItemProperty().addListener(
+	 	            (observable, oldValue, newValue) -> showOperationDetails(newValue));
     }
 	
 	
@@ -461,8 +479,31 @@ public class AccueilController {
 		System.out.println("lstClients size = "+lstOp.size());
 	}
 	
-	private void showOperationDetails(int idCompte) {
-	    if (idCompte != 0) {
+	//private void showOperationDetails(int idCompte) {
+	    //if (idCompte != 0) {
+	    	/*Client client = clientDao.findClientPerId(idCompte);*/
+	        // Fill the labels with info from the person object.
+	    	//operationDao.trouverProprioOp(compte.getIdCompte())
+	    	/*lbNomProprioOp.setText(client.getNomClient());
+	    	lbPrenomProprioOp.setText(client.getPrenomClient());
+	    	lbVilleProprioOp.setText(client.getVilleClient());
+	    	lbSoldeProprioOp.setText(compteDao.findSoldeCompte(idCompte).toString());*/
+	       
+	        // TODO: We need a way to convert the birthday into a String!
+	        // birthdayLabel.setText(...);
+	   /* } else {*/
+	        // Person is null, remove all the text.
+	    	/*lbNomProprioOp.setText("");
+	    	lbPrenomProprioOp.setText("");
+	    	lbVilleProprioOp.setText("");
+	    	lbSoldeProprioOp.setText("");
+	    }
+	}*/
+	
+	private void showOperationDetails(Operation operation) {
+		
+	    if (operation != null) {
+	    	int idCompte = operation.getIdCompte();
 	    	Client client = clientDao.findClientPerId(idCompte);
 	        // Fill the labels with info from the person object.
 	    	//operationDao.trouverProprioOp(compte.getIdCompte())

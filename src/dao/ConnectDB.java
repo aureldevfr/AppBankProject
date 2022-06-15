@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class ConnectDB {
 	private static Connection connect = null;
-	private String url = "jdbc:mysql://localhost:3306/banque";
+	private String url = "jdbc:mysql://localhost:3306/appbank";
 	private String user = "root";
 	private String passwd = "";
 	
@@ -29,5 +29,17 @@ public class ConnectDB {
 		}
 		return connect;
 	}
+	
+	//Close Connection
+    public static void closeConnection() throws SQLException {
+        try {
+            if (connect != null && !connect.isClosed()) {
+            	connect.close();
+            }
+        } catch (Exception e){
+           throw e;
+        }
+    }
+    
 	
 }
